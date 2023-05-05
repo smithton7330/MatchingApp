@@ -2,6 +2,7 @@ package com.example.matchingapp.fragment
 
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.matchingapp.R
+import com.example.matchingapp.activity.JoinActivity
 import com.example.matchingapp.activity.LoginActivity
 import com.example.matchingapp.dto.User
 import com.example.matchingapp.databinding.FragmentLoginBinding
@@ -54,10 +56,11 @@ class LoginFragment : Fragment() {
             loginActivity.openFragment(1)
         }
 
-//        // 회원가입 버튼
-//        binding.btnJoin.setOnClickListener {
-//            loginActivity.openFragment(2)
-//        }
+
+        // 회원가입 버튼
+        binding.btnJoin.setOnClickListener {
+            loginActivity.openFragment(2)
+        }
     } // End of onViewCreated
 
     // 로그인 버튼

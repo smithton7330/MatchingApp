@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import com.example.matchingapp.R
 import com.example.matchingapp.databinding.ActivityMainBinding
 import com.example.matchingapp.fragment.ChatFragment
+import com.example.matchingapp.fragment.CommunityFragment
 import com.example.matchingapp.fragment.HomeFragment
 import com.example.matchingapp.fragment.MypageFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -47,6 +48,11 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.navigation_page_3 -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.frame_layout_main, CommunityFragment()).commit()
+                    true
+                }
+                R.id.navigation_page_4 -> {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.frame_layout_main, MypageFragment()).commit()
                     true

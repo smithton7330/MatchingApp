@@ -3,7 +3,9 @@ package com.example.matchingapp.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.matchingapp.R
-import com.example.matchingapp.fragment.LoginFragment
+import com.example.matchingapp.fragment.join.GenderSelectFragment
+import com.example.matchingapp.fragment.join.HeightSelectFragment
+import com.example.matchingapp.fragment.join.JoinCompletedFragment
 
 private const val TAG = "JoinActivity_테스트"
 
@@ -16,7 +18,8 @@ class JoinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_join)
 
         supportFragmentManager.beginTransaction()
-            .replace(R.id.frame_layout_join, LoginFragment())
+            .replace(R.id.frame_layout_join, GenderSelectFragment())
+            .addToBackStack(null)
             .commit()
     }
 }
