@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.example.matchingapp.R
 import com.example.matchingapp.activity.JoinActivity
 import com.example.matchingapp.databinding.FragmentHeightSelectBinding
+import com.example.matchingapp.util.showSnackBarMessage
 
 class HeightSelectFragment : Fragment() {
     private lateinit var binding: FragmentHeightSelectBinding
@@ -46,10 +47,13 @@ class HeightSelectFragment : Fragment() {
             bundle.putInt("height", height)
             fragment.arguments = bundle
 
-            activity?.supportFragmentManager!!.beginTransaction()
-                .replace(R.id.frame_layout_join, fragment)
-                .addToBackStack(null)
-                .commit()
+            if(height == 0) view.showSnackBarMessage("select height")
+            else {
+                activity?.supportFragmentManager!!.beginTransaction()
+                    .replace(R.id.frame_layout_join, fragment)
+                    .addToBackStack(null)
+                    .commit()
+            }
         }
     }
 }

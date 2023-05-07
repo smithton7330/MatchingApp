@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import com.example.matchingapp.R
 import com.example.matchingapp.activity.JoinActivity
 import com.example.matchingapp.databinding.FragmentGenderSelectBinding
+import com.example.matchingapp.util.showSnackBarMessage
 
 class GenderSelectFragment : Fragment() {
     private lateinit var binding: FragmentGenderSelectBinding
@@ -45,10 +46,13 @@ class GenderSelectFragment : Fragment() {
             bundle.putInt("gender", gender)
             fragment.arguments = bundle
 
-            activity?.supportFragmentManager!!.beginTransaction()
-                .replace(R.id.frame_layout_join, fragment)
-                .addToBackStack(null)
-                .commit()
+            if(gender == 0) view.showSnackBarMessage("select gender")
+            else {
+                activity?.supportFragmentManager!!.beginTransaction()
+                    .replace(R.id.frame_layout_join, fragment)
+                    .addToBackStack(null)
+                    .commit()
+            }
         }
     }
 }
