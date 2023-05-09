@@ -10,14 +10,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.matchingapp.R
 import com.example.matchingapp.adapter.ItemRecyclerViewAdapter
+import com.example.matchingapp.databinding.FragmentCommunityListBinding
+import com.example.matchingapp.dto.Post
 import com.example.matchingapp.fragment.placeholder.PlaceholderContent
 
-/**
- * A fragment representing a list of Items.
- */
 class CommunityFragment : Fragment() {
-
+    private lateinit var binding: FragmentCommunityListBinding
     private var columnCount = 1
+    private lateinit var list: List<Post>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,21 +31,33 @@ class CommunityFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_community_list, container, false)
-
-        // Set the adapter
-        if (view is RecyclerView) {
-            with(view) {
-                layoutManager = when {
-                    columnCount <= 1 -> LinearLayoutManager(context)
-                    else -> GridLayoutManager(context, columnCount)
-                }
-                adapter = ItemRecyclerViewAdapter(PlaceholderContent.ITEMS)
-            }
-        }
-        return view
+        binding = FragmentCommunityListBinding.inflate(inflater, container, false)
+        return binding.root
+//        val view = inflater.inflate(R.layout.fragment_community_list, container, false)
+//
+//        // Set the adapter
+//        if (view is RecyclerView) {
+//            with(view) {
+//                layoutManager = when {
+//                    columnCount <= 1 -> LinearLayoutManager(context)
+//                    else -> GridLayoutManager(context, columnCount)
+//                }
+//                adapter = ItemRecyclerViewAdapter(PlaceholderContent.ITEMS)
+//            }
+//        }
+//        return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        list = PlaceholderContent.ITEMS
+
+        binding.list.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = ItemRecyclerViewAdapter(list)
+//            adapter = ItemRecyclerViewAdapter(list)
+        }
+    }
     companion object {
 
         // TODO: Customize parameter argument names
